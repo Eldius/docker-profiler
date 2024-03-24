@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/eldius/docker-profiler/internal/helper"
-	"log"
 	"time"
 )
 
@@ -129,17 +128,9 @@ func (s ContainerStats) MemoryLimitStr() string {
 
 func (s *ContainerStats) CPUUsagePercentage() float64 {
 	cpuPercent := 0.0
-	//numCPUs := len(s.PercpuUsage)
 	numCPUs := s.CPUStats.OnlineCPUs
-
-	//cpuDelta := float64(s.CPUUSage) - float64(s.PreCPUUSage)
 	cpuDelta := float64(s.CPUStats.CPUUsage.TotalUsage) - float64(s.PreCPUStats.CPUUsage.TotalUsage)
-
-	//systemDelta := float64(s.SystemCPUUsage) - float64(s.PreSystemCPUUsage)
 	systemDelta := float64(s.CPUStats.SystemUsage) - float64(s.PreCPUStats.SystemUsage)
-
-	log.Printf("numCPUs: %d / cpuDelta: %01.2f / systemDelta: %01.2f\n", numCPUs, cpuDelta, systemDelta)
-	log.Printf("numCPUs: %d / cpuDelta: %01.2f / systemDelta: %01.2f\n", numCPUs, cpuDelta, systemDelta)
 
 	if cpuDelta > 0.0 && systemDelta > 0.0 {
 		cpuPercent = (cpuDelta / systemDelta) * float64(numCPUs) * 100.0

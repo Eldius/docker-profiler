@@ -8,6 +8,7 @@ import (
 	"github.com/eldius/docker-profiler/internal/docker"
 	"github.com/eldius/docker-profiler/internal/plot"
 	"log"
+	"time"
 )
 
 func main() {
@@ -44,18 +45,21 @@ func main() {
 			log.Fatalf("failed to list datapoints: %v", err)
 		}
 
-		for _, d := range list {
+		for id, d := range list {
 			fmt.Println("---")
+			fmt.Printf("id:           %06d\n", id)
+			fmt.Printf("timestamp:    %s\n", d.Timestamp.Format(time.RFC3339))
 			fmt.Printf("memory usage: %s\n", d.MemoryUsageStr())
 			fmt.Printf("memory limit: %s\n", d.MemoryLimitStr())
-			fmt.Printf("cpu percent: %01.2f\n", d.CPUPercentage)
-			fmt.Printf("cpu online:  %01.2f\n", d.CPUOnlineCount)
-			fmt.Printf("cpu usage:   %01.2f\n", d.CPUUsage)
-			fmt.Printf("timestamp:   %v\n", d.Timestamp)
+			fmt.Printf("cpu percent:  %01.2f\n", d.CPUPercentage)
+			fmt.Printf("cpu online:   %01.2f\n", d.CPUOnlineCount)
+			fmt.Printf("cpu usage:    %01.2f\n", d.CPUUsage)
+			fmt.Printf("timestamp:    %v\n", d.Timestamp)
 			fmt.Println("")
 		}
 
-		plot.PlotToFile(list)
+		//plot.PlotToFile(list)
+		plot.Plot(list)
 
 	}
 }
