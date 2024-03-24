@@ -176,17 +176,18 @@ func Plot(mdps []model.MetricsDatapoint) {
 	memFormatter := newMemoryFormatter()
 	percentageFormatter := newPercentageFormatter()
 
-	draw(memUsagePoints, memFormatter, "Memory", "memory_usage.png", "Memory Usage")
-	draw(memLimitPoints, memFormatter, "Memory", "memory_limit.png", "Memory Limit")
-	draw(cpuUsagePoints, nil, "CPU Time", "cpu_usage.png", "CPU Usage")
-	draw(cpuOnlinePoints, nil, "Number of CPUs", "cpu_online.png", "CPU Count")
-	draw(cpuPercentPoints, percentageFormatter, "CPU Usage %", "cpu_percentage.png", "CPU Usage %")
+	draw(memUsagePoints, memFormatter, "Memory", "memory_usage.svg", "Memory Usage")
+	draw(memLimitPoints, memFormatter, "Memory", "memory_limit.svg", "Memory Limit")
+	draw(memPercentage, percentageFormatter, "Memory", "memory_percentage.svg", "Memory Percentage")
+	draw(cpuUsagePoints, nil, "CPU Time", "cpu_usage.svg", "CPU Usage")
+	draw(cpuOnlinePoints, nil, "Number of CPUs", "cpu_online.svg", "CPU Count")
+	draw(cpuPercentPoints, percentageFormatter, "CPU Usage %", "cpu_percentage.svg", "CPU Usage %")
 }
 
-func draw(data plotter.XYer, yFormatter plot.Ticker, yLabel, file, title string) {
+func draw(data plotter.XYer, yFormatter plot.Ticker, yLabel, file, title string, marks ...float64) {
 	fmt.Printf("Printing chart '%s'...\n", title)
 
-	xticks := plot.TimeTicks{Format: "2006-01-02\n15:04"}
+	xticks := plot.TimeTicks{Format: time.RFC3339}
 	p := plot.New()
 	p.Title.Text = title
 	p.X.Tick.Marker = xticks
@@ -202,9 +203,13 @@ func draw(data plotter.XYer, yFormatter plot.Ticker, yLabel, file, title string)
 	}
 	p.Add(line)
 	_ = plotutil.AddScatters(p, data)
-
-	//dataCount := data.Len()
-	if err := p.Save(30*vg.Inch, 10*vg.Inch, filepath.Join(".data", file)); err != nil {
+	for _, m := range marks {
+		_ = plotutil.AddLines(p, plotter.NewFunction(func(f float64) float64 {
+			return m
+		}))
+	}
+	dataCount := data.Len()
+	if err := p.Save(vg.Length(dataCount/10)*vg.Inch, 10*vg.Inch, filepath.Join(".data", file)); err != nil {
 		panic(err)
 	}
 }
