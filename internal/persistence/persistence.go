@@ -43,7 +43,7 @@ func (r *Repository) Persist(s model.ContainerStats) error {
 		},
 		{
 			Metric:    memoryLimitMetricName,
-			DataPoint: tstorage.DataPoint{Timestamp: unixTimestamp, Value: float64(s.MemoryStats.Usage)},
+			DataPoint: tstorage.DataPoint{Timestamp: unixTimestamp, Value: float64(s.MemoryStats.Limit)},
 		},
 		{
 			Metric:    cpuOnlineMetricName,

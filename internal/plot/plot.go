@@ -8,6 +8,7 @@ import (
 	"github.com/wcharczuk/go-chart/drawing"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
+	"gonum.org/v1/plot/plotutil"
 	"gonum.org/v1/plot/vg"
 	"os"
 	"path/filepath"
@@ -143,6 +144,7 @@ func Plot(mdps []model.MetricsDatapoint) {
 	count := len(mdps)
 	memUsagePoints := make(plotter.XYs, count)
 	memLimitPoints := make(plotter.XYs, count)
+	memPercentage := make(plotter.XYs, count)
 	cpuOnlinePoints := make(plotter.XYs, count)
 	cpuUsagePoints := make(plotter.XYs, count)
 	cpuPercentPoints := make(plotter.XYs, count)
@@ -154,6 +156,9 @@ func Plot(mdps []model.MetricsDatapoint) {
 		//memLimitPoints[i].X = float64(i)
 		memLimitPoints[i].X = float64(v.Timestamp.Unix())
 		memLimitPoints[i].Y = v.MemoryLimit
+
+		memPercentage[i].X = float64(v.Timestamp.Unix())
+		memPercentage[i].Y = helper.Percentage(uint64(v.MemoryUsage), uint64(v.MemoryLimit))
 
 		//cpuOnlinePoints[i].X = float64(i)
 		cpuOnlinePoints[i].X = float64(v.Timestamp.Unix())
@@ -168,19 +173,26 @@ func Plot(mdps []model.MetricsDatapoint) {
 		cpuUsagePoints[i].Y = v.CPUUsage
 	}
 
-	draw(memUsagePoints, newMemoryFormatter(), "Memory", "memory_usage.png", "Memory Usage")
-	draw(memLimitPoints, newMemoryFormatter(), "Memory", "memory_limit.png", "Memory Limit")
-	draw(cpuUsagePoints, plot.DefaultTicks{}, "CPU Time", "cpu_usage.png", "CPU Usage")
-	draw(cpuOnlinePoints, plot.DefaultTicks{}, "Number of CPUs", "cpu_online.png", "CPU Count")
-	draw(cpuPercentPoints, plot.DefaultTicks{}, "CPU Usage %", "cpu_percentage.png", "CPU Usage %")
+	memFormatter := newMemoryFormatter()
+	percentageFormatter := newPercentageFormatter()
+
+	draw(memUsagePoints, memFormatter, "Memory", "memory_usage.png", "Memory Usage")
+	draw(memLimitPoints, memFormatter, "Memory", "memory_limit.png", "Memory Limit")
+	draw(cpuUsagePoints, nil, "CPU Time", "cpu_usage.png", "CPU Usage")
+	draw(cpuOnlinePoints, nil, "Number of CPUs", "cpu_online.png", "CPU Count")
+	draw(cpuPercentPoints, percentageFormatter, "CPU Usage %", "cpu_percentage.png", "CPU Usage %")
 }
 
 func draw(data plotter.XYer, yFormatter plot.Ticker, yLabel, file, title string) {
+	fmt.Printf("Printing chart '%s'...\n", title)
+
 	xticks := plot.TimeTicks{Format: "2006-01-02\n15:04"}
 	p := plot.New()
 	p.Title.Text = title
 	p.X.Tick.Marker = xticks
-	p.Y.Tick.Marker = yFormatter
+	if yFormatter != nil {
+		p.Y.Tick.Marker = yFormatter
+	}
 	p.Y.Label.Text = yLabel
 	p.Add(plotter.NewGrid())
 
@@ -189,9 +201,10 @@ func draw(data plotter.XYer, yFormatter plot.Ticker, yLabel, file, title string)
 		panic(err)
 	}
 	p.Add(line)
+	_ = plotutil.AddScatters(p, data)
 
-	dataCount := data.Len()
-	if err := p.Save(vg.Length(dataCount)*vg.Inch, 10*vg.Inch, filepath.Join(".data", file)); err != nil {
+	//dataCount := data.Len()
+	if err := p.Save(30*vg.Inch, 10*vg.Inch, filepath.Join(".data", file)); err != nil {
 		panic(err)
 	}
 }
@@ -202,7 +215,17 @@ func newMemoryFormatter() plot.Ticker {
 	}
 }
 
+func newPercentageFormatter() plot.Ticker {
+	return &percentageTickerMarker{
+		Ticker: plot.DefaultTicks{},
+	}
+}
+
 type memoryTickerMarker struct {
+	Ticker plot.Ticker
+}
+
+type percentageTickerMarker struct {
 	Ticker plot.Ticker
 }
 
@@ -214,6 +237,18 @@ func (m memoryTickerMarker) Ticks(min, max float64) []plot.Tick {
 			continue
 		}
 		tick.Label = helper.FormatMemory(uint64(tick.Value))
+	}
+	return ticks
+}
+
+func (m percentageTickerMarker) Ticks(min, max float64) []plot.Tick {
+	ticks := m.Ticker.Ticks(min, max)
+	for i := range ticks {
+		tick := &ticks[i]
+		if tick.Label == "" {
+			continue
+		}
+		tick.Label = fmt.Sprintf("%01.2f%%", tick.Value)
 	}
 	return ticks
 }
