@@ -1,0 +1,330 @@
+repo_name: Eldius/docker-profiler
+report_id: 9243e264d2a53012e0e09628b5d54420
+version: 0.1
+repo_type: Public
+timestamp: '2024-05-31T20:41:43+00:00'
+requested_by: Eldius
+provider: github
+branch: main
+detected_tools_count: 24
+tools:
+- name: Golang
+  description: An open source programming language that makes it easy to build simple,
+    reliable, and efficient software
+  website_url: http://golang.org/
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1005/O6AczwfV_400x400.png
+  detection_source_url: https://github.com/Eldius/docker-profiler
+  detection_source: Repo Metadata
+- name: Protobuf
+  description: Google's data interchange format
+  website_url: https://developers.google.com/protocol-buffers/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Serialization Frameworks
+  image_url: https://img.stackshare.io/service/4393/ma2jqJKH_400x400.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.mod
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: gRPC
+  description: A high performance, open-source universal RPC framework
+  website_url: https://grpc.io/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Remote Procedure Call (RPC)
+  image_url: https://img.stackshare.io/service/4670/default_d811b0ac72205af84aca21f967594338580be913.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.mod
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-23 20:59:31.000000000 Z
+- name: Docker
+  description: Enterprise Container Platform for High-Velocity Innovation.
+  website_url: https://www.docker.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Virtual Machine Platforms & Containers
+  image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/Eldius/docker-profiler
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/Eldius/docker-profiler
+  detection_source: Repo Metadata
+- name: Ubuntu
+  description: The leading OS for PC, tablet, phone and cloud
+  website_url: http://www.ubuntu.com/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Operating Systems
+  image_url: https://img.stackshare.io/service/3511/cof_orange_hex.jpg
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/test_image/Dockerfile
+  detection_source: test_image/Dockerfile
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: errors
+  description: Simple error handling primitives
+  package_url: https://pkg.go.dev/github.com/pkg/errors
+  version: 0.9.1
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-23 20:59:31.000000000 Z
+- name: freetype
+  description: The Freetype font rasterizer in the Go programming language
+  package_url: https://pkg.go.dev/github.com/golang/freetype
+  version: 0.0.0
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: go-chart
+  description: Go chart is a basic charting library in native golang
+  package_url: https://pkg.go.dev/github.com/wcharczuk/go-chart
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.mod
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: go-connections
+  description: Utility package to work with network connections
+  package_url: https://pkg.go.dev/github.com/docker/go-connections
+  version: 0.5.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 16:15:55.000000000 Z
+- name: go-difflib
+  description: Partial port of Python difflib package to Go
+  package_url: https://pkg.go.dev/github.com/pmezard/go-difflib
+  version: 1.0.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 16:15:55.000000000 Z
+- name: go-digest
+  description: Common digest package used across the container ecosystem
+  package_url: https://pkg.go.dev/github.com/opencontainers/go-digest
+  version: 1.0.0
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 16:15:55.000000000 Z
+- name: go-units
+  description: Parse and print size and time units in human-readable format
+  package_url: https://pkg.go.dev/github.com/docker/go-units
+  version: 0.5.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-23 20:59:31.000000000 Z
+- name: go-winio
+  description: Win32 IO-related utilities for Go
+  package_url: https://pkg.go.dev/github.com/Microsoft/go-winio
+  version: 0.6.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: gogo/protobuf
+  description: Protocol Buffers for Go with Gadgets
+  package_url: https://pkg.go.dev/github.com/gogo/protobuf
+  version: 1.3.2
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: httpsnoop
+  description: Package httpsnoop provides an easy way to capture http related metrics
+  package_url: https://pkg.go.dev/github.com/felixge/httpsnoop
+  version: 1.0.4
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-23 20:59:31.000000000 Z
+- name: image
+  description: Go supplementary image libraries
+  package_url: https://pkg.go.dev/golang.org/x/image
+  version: 0.15.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: logr
+  description: A simple logging interface for Go
+  package_url: https://pkg.go.dev/github.com/go-logr/logr
+  version: 1.2.2
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-23 20:59:31.000000000 Z
+- name: net
+  description: Go supplementary network libraries
+  package_url: https://pkg.go.dev/golang.org/x/net
+  version: 0.0.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-23 20:59:31.000000000 Z
+- name: proto
+  description: Go support for Google's protocol buffers
+  package_url: https://pkg.go.dev/github.com/golang/protobuf/proto
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.mod
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
+- name: svgo
+  description: Go Language Library for SVG generation
+  package_url: https://pkg.go.dev/github.com/ajstarks/svgo
+  version: 0.0.0
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 16:15:55.000000000 Z
+- name: sys
+  description: Go packages for low-level interaction with the operating system
+  package_url: https://pkg.go.dev/golang.org/x/sys
+  version: 0.0.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-23 20:59:31.000000000 Z
+- name: text
+  description: Go text processing support
+  package_url: https://pkg.go.dev/golang.org/x/text
+  version: 0.3.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 16:15:55.000000000 Z
+- name: tools
+  description: Go Tools
+  package_url: https://pkg.go.dev/golang.org/x/tools
+  version: 0.0.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Go Modules Packages
+  image_url: https://img.stackshare.io/package/go-packages/image.png
+  detection_source_url: https://github.com/Eldius/docker-profiler/blob/main/go.sum
+  detection_source: go.mod
+  last_updated_by: eldius
+  last_updated_on: 2024-03-24 04:00:51.000000000 Z
